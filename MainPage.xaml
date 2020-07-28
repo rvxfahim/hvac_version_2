@@ -1,0 +1,160 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Custom="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:Custom1="using:Telerik.UI.Xaml.Controls.Input"
+    xmlns:Custom2="using:Syncfusion.UI.Xaml.Controls.Input"
+    x:Class="hvac_version_2.MainPage"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" RequestedTheme="Dark"
+    xmlns:localNumericBox="using:Telerik.UI.Xaml.Controls.Input.NumericBox"
+    xmlns:primitives="using:Telerik.UI.Xaml.Controls.Primitives"
+    xmlns:primitivesCommon="using:Telerik.UI.Xaml.Controls.Primitives.Common">
+    <Page.Resources>
+        <Color x:Key="TelerikWatermarkForegroundColor">#FF666666</Color>
+        <Color x:Key="TelerikForegroundColor">#FFFFFFFF</Color>
+        <Color x:Key="TelerikSecondaryForegroundColor">#99FFFFFF</Color>
+        <Color x:Key="TelerikSelectedColor">#FF006AC1</Color>
+        <Color x:Key="TelerikDisabledColor">#66FFFFFF</Color>
+        <Color x:Key="TelerikWhiteColor">#FFFFFFFF</Color>
+        <primitives:ContentToVisibilityConverter x:Key="ContentToVisibilityConverter"/>
+        <SolidColorBrush x:Key="TelerikNumericBoxBorderBrush" Color="#CCFFFFFF"/>
+        <SolidColorBrush x:Key="TelerikNumericBoxHeaderForegroundBrush" Color="{ThemeResource TelerikSecondaryForegroundColor}"/>
+        <SolidColorBrush x:Key="TelerikNumericBoxWatermarkForegroundBrush" Color="{ThemeResource TelerikWatermarkForegroundColor}"/>
+        <SolidColorBrush x:Key="TelerikNumericBoxSpinButtonBackgroundBrush" Color="{ThemeResource TelerikSelectedColor}"/>
+        <SolidColorBrush x:Key="TelerikNumericBoxSpinButtonForegroundBrush" Color="{ThemeResource TelerikWhiteColor}"/>
+        <SolidColorBrush x:Key="TelerikNumericBoxSpinButtonPointerOverBackgroundBrush" Color="#FF217DC9"/>
+        <SolidColorBrush x:Key="TelerikNumericBoxSpinButtonPressedBackgroundBrush" Color="{ThemeResource TelerikForegroundColor}"/>
+        <SolidColorBrush x:Key="TelerikNumericBoxSpinButtonPressedForegroundBrush" Color="#FF000000"/>
+        <SolidColorBrush x:Key="TelerikNumericBoxSpinButtonDisabledBackgroundBrush" Color="#00FFFFFF"/>
+        <SolidColorBrush x:Key="TelerikNumericBoxSpinButtonDisabledForegroundBrush" Color="{ThemeResource TelerikDisabledColor}"/>
+        <SolidColorBrush x:Key="TelerikNumericBoxSpinButtonDisabledBorderBrush" Color="#66FFFFFF"/>
+        <Style x:Key="NumericBoxButtonBaseStyle" TargetType="primitivesCommon:InlineButton">
+            <Setter Property="FontFamily" Value="{ThemeResource SymbolThemeFontFamily}"/>
+        </Style>
+        <Style x:Key="NumericButtonIncreaseStyle" BasedOn="{StaticResource NumericBoxButtonBaseStyle}" TargetType="primitivesCommon:InlineButton">
+            <Setter Property="AutomationProperties.Name" Value="NumericIncrease"/>
+            <Setter Property="ClickMode" Value="Press"/>
+            <Setter Property="Padding" Value="9,2,9,4"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="IsTabStop" Value="False"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="Content" Value="&#xE0A0;"/>
+            <Setter Property="Background" Value="{ThemeResource TelerikNumericBoxSpinButtonBackgroundBrush}"/>
+            <Setter Property="Foreground" Value="{ThemeResource TelerikNumericBoxSpinButtonForegroundBrush}"/>
+            <Setter Property="BorderBrush" Value="{ThemeResource TelerikNumericBoxSpinButtonBackgroundBrush}"/>
+            <Setter Property="PointerOverBackgroundBrush" Value="{ThemeResource TelerikNumericBoxSpinButtonPointerOverBackgroundBrush}"/>
+            <Setter Property="PointerOverForegroundBrush" Value="{ThemeResource TelerikNumericBoxSpinButtonForegroundBrush}"/>
+            <Setter Property="PointerOverBorderBrush" Value="{ThemeResource TelerikNumericBoxSpinButtonPointerOverBackgroundBrush}"/>
+            <Setter Property="PressedBackgroundBrush" Value="{ThemeResource TelerikNumericBoxSpinButtonPressedBackgroundBrush}"/>
+            <Setter Property="PressedForegroundBrush" Value="{ThemeResource TelerikNumericBoxSpinButtonPressedForegroundBrush}"/>
+            <Setter Property="PressedBorderBrush" Value="{ThemeResource TelerikNumericBoxSpinButtonPressedBackgroundBrush}"/>
+            <Setter Property="DisabledBackgroundBrush" Value="{ThemeResource TelerikNumericBoxSpinButtonDisabledBackgroundBrush}"/>
+            <Setter Property="DisabledForegroundBrush" Value="{ThemeResource TelerikNumericBoxSpinButtonDisabledForegroundBrush}"/>
+            <Setter Property="DisabledBorderBrush" Value="{ThemeResource TelerikNumericBoxSpinButtonDisabledBorderBrush}"/>
+        </Style>
+        <Style x:Key="NumericButtonDecreaseStyle" BasedOn="{StaticResource NumericButtonIncreaseStyle}" TargetType="primitivesCommon:InlineButton">
+            <Setter Property="AutomationProperties.Name" Value="NumericDecrease"/>
+            <Setter Property="Margin" Value="2,0"/>
+            <Setter Property="Content" Value="&#xE0A1;"/>
+        </Style>
+        <primitives:BooleanNotConverter x:Key="EditableConverter"/>
+        <Style x:Key="RadNumericBoxStyle1" TargetType="Custom1:RadNumericBox">
+            <Setter Property="Minimum" Value="0"/>
+            <Setter Property="Maximum" Value="100"/>
+            <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}"/>
+            <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}"/>
+            <Setter Property="MinWidth" Value="180"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="IsTabStop" Value="False"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="{ThemeResource TelerikNumericBoxBorderBrush}"/>
+            <Setter Property="IncreaseButtonStyle" Value="{StaticResource NumericButtonIncreaseStyle}"/>
+            <Setter Property="DecreaseButtonStyle" Value="{StaticResource NumericButtonDecreaseStyle}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Custom1:RadNumericBox">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="WatermarkHidden"/>
+                                    <VisualState x:Name="WatermarkVisible">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Watermark" Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <ContentControl ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" IsTabStop="False" Style="{TemplateBinding HeaderStyle}" Visibility="{Binding Content, Converter={StaticResource ContentToVisibilityConverter}, RelativeSource={RelativeSource Mode=Self}}"/>
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <localNumericBox:NumericTextBox x:Name="PART_TextBox" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" IsReadOnly="{Binding IsEditable, Converter={StaticResource EditableConverter}, RelativeSource={RelativeSource Mode=TemplatedParent}}" Margin="0,0,160,0"/>
+                                <primitivesCommon:InlineButton x:Name="PART_DecreaseButton" IsRepeatingEnabled="True" Style="{TemplateBinding DecreaseButtonStyle}" Visibility="{TemplateBinding ButtonsVisibility}" Margin="111,0,0,0" Width="75"/>
+                                <primitivesCommon:InlineButton x:Name="PART_IncreaseButton" IsRepeatingEnabled="True" Style="{TemplateBinding IncreaseButtonStyle}" Visibility="{TemplateBinding ButtonsVisibility}" Margin="191,0,0,0" Width="75"/>
+                            </Grid>
+                            <ContentControl x:Name="Watermark" ContentTemplate="{TemplateBinding WatermarkTemplate}" Content="{TemplateBinding Watermark}" Foreground="{ThemeResource TelerikNumericBoxWatermarkForegroundBrush}" IsTabStop="False" IsHitTestVisible="False" Margin="{TemplateBinding Padding}" Padding="4,0,0,2" Grid.Row="1" VerticalAlignment="Center" Visibility="Collapsed"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="HeaderStyle">
+                <Setter.Value>
+                    <Style TargetType="ContentControl">
+                        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                        <Setter Property="VerticalAlignment" Value="Stretch"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                        <Setter Property="Margin" Value="0 0 0 4"/>
+                        <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}"/>
+                        <Setter Property="Foreground" Value="{ThemeResource TelerikNumericBoxHeaderForegroundBrush}"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="199*"/>
+            <RowDefinition Height="101*"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="auto_mode" Content="Auto" Height="74" Margin="185,118,0,0" VerticalAlignment="Top" Width="162" FontSize="36" Grid.Row="1"/>
+        <Button x:Name="manual_mode" Content="Manual" Height="74" Margin="352,118,0,0" VerticalAlignment="Top" Width="162" FontSize="36" Grid.Row="1"/>
+
+
+
+        <Custom:RadialGauge x:Name="tempgauge1" HorizontalAlignment="Left" Height="307" VerticalAlignment="Top" Width="358" Margin="298,167,0,0" RequestedTheme="Default" Maximum="65" Minimum="-40" LargeChange="10" Unit="'C" Grid.RowSpan="2"/>
+        <Custom:RadialGauge x:Name="tempgauge2" HorizontalAlignment="Left" Height="307" VerticalAlignment="Top" Width="358" Margin="656,167,0,0" Maximum="65" Minimum="-40" Unit="'C" ScaleTickWidth="3" Grid.RowSpan="2"/>
+        <Button x:Name="start_button" Content="Start" Height="74" Margin="519,118,0,0" VerticalAlignment="Top" Width="162" FontSize="36" Grid.Row="1"/>
+        <Button x:Name="stop_button" Content="Stop" Height="74" Margin="686,118,0,0" VerticalAlignment="Top" Width="162" FontSize="36" Click="stop_button_Click" Grid.Row="1"/>
+        <Ellipse x:Name="pump_status_light" HorizontalAlignment="Left" Height="75" Margin="896,8,0,0" Stroke="Black" VerticalAlignment="Top" Width="75" Fill="#FFFB0000"/>
+        <Ellipse x:Name="fan1_status_light" HorizontalAlignment="Left" Height="75" Margin="729,8,0,0" Stroke="Black" VerticalAlignment="Top" Width="75" Fill="#FFFB0000"/>
+        <Ellipse x:Name="fan2_status_light" HorizontalAlignment="Left" Height="75" Margin="562,8,0,0" Stroke="Black" VerticalAlignment="Top" Width="75" Fill="#FFFB0000"/>
+        <Ellipse x:Name="compressorB_status_light" HorizontalAlignment="Left" Height="75" Margin="395,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="75" Fill="#FFFB0000"/>
+        <Ellipse x:Name="compressorA_status_light" HorizontalAlignment="Left" Height="75" Margin="228,8,0,0" Stroke="Black" VerticalAlignment="Top" Width="75" Fill="#FFFB0000"/>
+        <Button x:Name="compressorB_button" Content="Comp B" Height="74" Margin="351,88,0,0" VerticalAlignment="Top" Width="162" FontSize="36"/>
+        <Button x:Name="fanA_button" Content="Fan A" Height="74" Margin="518,88,0,0" VerticalAlignment="Top" Width="162" FontSize="36"/>
+        <Button x:Name="fanB_button" Content="Fan B" Height="74" Margin="685,88,0,0" VerticalAlignment="Top" Width="162" FontSize="36"/>
+        <Button x:Name="pump_button" Content="Pump" Height="74" Margin="852,88,0,0" VerticalAlignment="Top" Width="162" FontSize="36" Click="stop_button_Click"/>
+        <Button x:Name="compressorA_button" Content="Comp A" Height="74" Margin="184,88,0,0" VerticalAlignment="Top" Width="162" FontSize="36" Click="compressorA_button_Click"/>
+        <Custom1:RadNumericBox Style="{StaticResource RadNumericBoxStyle1}" HorizontalAlignment="Left" Height="77" Margin="10,223,0,0" Width="266" ValueChanged="set_temperature_changed" FontSize="36" Minimum="-40"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,167,0,0" Text="Set Temperature" TextWrapping="Wrap" VerticalAlignment="Top" Height="45" Width="266" FontSize="36"/>
+        <Custom1:RadNumericBox x:Name="set_switching_time" HorizontalAlignment="Left" Height="77" Margin="10,383,0,0" Width="266" Style="{StaticResource RadNumericBoxStyle1}" Grid.RowSpan="2" ValueChanged="set_switching_time_value_changed"/>
+
+
+    </Grid>
+</Page>
