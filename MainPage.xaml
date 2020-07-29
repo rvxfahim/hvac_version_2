@@ -5,13 +5,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Custom="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:Custom1="using:Telerik.UI.Xaml.Controls.Input"
-    xmlns:Custom2="using:Syncfusion.UI.Xaml.Controls.Input"
     x:Class="hvac_version_2.MainPage"
-    mc:Ignorable="d"
+    mc:Ignorable="d" Loaded="Page_Loaded" Unloaded="Page_Unloaded"
+    
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" RequestedTheme="Dark"
     xmlns:localNumericBox="using:Telerik.UI.Xaml.Controls.Input.NumericBox"
     xmlns:primitives="using:Telerik.UI.Xaml.Controls.Primitives"
     xmlns:primitivesCommon="using:Telerik.UI.Xaml.Controls.Primitives.Common">
+
     <Page.Resources>
         <Color x:Key="TelerikWatermarkForegroundColor">#FF666666</Color>
         <Color x:Key="TelerikForegroundColor">#FFFFFFFF</Color>
@@ -132,28 +133,32 @@
             <RowDefinition Height="199*"/>
             <RowDefinition Height="101*"/>
         </Grid.RowDefinitions>
-        <Button x:Name="auto_mode" Content="Auto" Height="74" Margin="185,118,0,0" VerticalAlignment="Top" Width="162" FontSize="36" Grid.Row="1"/>
-        <Button x:Name="manual_mode" Content="Manual" Height="74" Margin="352,118,0,0" VerticalAlignment="Top" Width="162" FontSize="36" Grid.Row="1"/>
+        <Button x:Name="auto_mode" Content="Auto" Height="74" Margin="185,118,0,0" VerticalAlignment="Top" Width="162" FontSize="36" Grid.Row="1" Click="auto_mode_Click"/>
+        <Button x:Name="manual_mode" Content="Manual" Height="74" Margin="352,118,0,0" VerticalAlignment="Top" Width="162" FontSize="36" Grid.Row="1" Click="manual_mode_Click"/>
 
 
 
         <Custom:RadialGauge x:Name="tempgauge1" HorizontalAlignment="Left" Height="307" VerticalAlignment="Top" Width="358" Margin="298,167,0,0" RequestedTheme="Default" Maximum="65" Minimum="-40" LargeChange="10" Unit="'C" Grid.RowSpan="2"/>
         <Custom:RadialGauge x:Name="tempgauge2" HorizontalAlignment="Left" Height="307" VerticalAlignment="Top" Width="358" Margin="656,167,0,0" Maximum="65" Minimum="-40" Unit="'C" ScaleTickWidth="3" Grid.RowSpan="2"/>
-        <Button x:Name="start_button" Content="Start" Height="74" Margin="519,118,0,0" VerticalAlignment="Top" Width="162" FontSize="36" Grid.Row="1"/>
+        <Button x:Name="start_button" Content="Start" Height="74" Margin="519,118,0,0" VerticalAlignment="Top" Width="162" FontSize="36" Grid.Row="1" Click="start_button_Click"/>
         <Button x:Name="stop_button" Content="Stop" Height="74" Margin="686,118,0,0" VerticalAlignment="Top" Width="162" FontSize="36" Click="stop_button_Click" Grid.Row="1"/>
-        <Ellipse x:Name="pump_status_light" HorizontalAlignment="Left" Height="75" Margin="896,8,0,0" Stroke="Black" VerticalAlignment="Top" Width="75" Fill="#FFFB0000"/>
-        <Ellipse x:Name="fan1_status_light" HorizontalAlignment="Left" Height="75" Margin="729,8,0,0" Stroke="Black" VerticalAlignment="Top" Width="75" Fill="#FFFB0000"/>
-        <Ellipse x:Name="fan2_status_light" HorizontalAlignment="Left" Height="75" Margin="562,8,0,0" Stroke="Black" VerticalAlignment="Top" Width="75" Fill="#FFFB0000"/>
-        <Ellipse x:Name="compressorB_status_light" HorizontalAlignment="Left" Height="75" Margin="395,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="75" Fill="#FFFB0000"/>
-        <Ellipse x:Name="compressorA_status_light" HorizontalAlignment="Left" Height="75" Margin="228,8,0,0" Stroke="Black" VerticalAlignment="Top" Width="75" Fill="#FFFB0000"/>
-        <Button x:Name="compressorB_button" Content="Comp B" Height="74" Margin="351,88,0,0" VerticalAlignment="Top" Width="162" FontSize="36"/>
-        <Button x:Name="fanA_button" Content="Fan A" Height="74" Margin="518,88,0,0" VerticalAlignment="Top" Width="162" FontSize="36"/>
-        <Button x:Name="fanB_button" Content="Fan B" Height="74" Margin="685,88,0,0" VerticalAlignment="Top" Width="162" FontSize="36"/>
-        <Button x:Name="pump_button" Content="Pump" Height="74" Margin="852,88,0,0" VerticalAlignment="Top" Width="162" FontSize="36" Click="stop_button_Click"/>
-        <Button x:Name="compressorA_button" Content="Comp A" Height="74" Margin="184,88,0,0" VerticalAlignment="Top" Width="162" FontSize="36" Click="compressorA_button_Click"/>
-        <Custom1:RadNumericBox Style="{StaticResource RadNumericBoxStyle1}" HorizontalAlignment="Left" Height="77" Margin="10,223,0,0" Width="266" ValueChanged="set_temperature_changed" FontSize="36" Minimum="-40"/>
+        <Ellipse x:Name="pump_status_light" HorizontalAlignment="Left" Height="75" Margin="809,8,0,0" Stroke="Black" VerticalAlignment="Top" Width="75" Fill="#FFFB0000"/>
+        <Ellipse x:Name="fan1_status_light" HorizontalAlignment="Left" Height="75" Margin="642,8,0,0" Stroke="Black" VerticalAlignment="Top" Width="75" Fill="#FFFB0000"/>
+        <Ellipse x:Name="fan2_status_light" HorizontalAlignment="Center" Height="75" Margin="0,8,0,0" Stroke="Black" VerticalAlignment="Top" Width="75" Fill="#FFFB0000"/>
+        <Ellipse x:Name="compressorB_status_light" HorizontalAlignment="Left" Height="75" Margin="308,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="75" Fill="#FFFB0000"/>
+        <Ellipse x:Name="compressorA_status_light" HorizontalAlignment="Left" Height="75" Margin="141,8,0,0" Stroke="Black" VerticalAlignment="Top" Width="75" Fill="#FFFB0000"/>
+        <Button x:Name="compressorB_button" Content="Comp B" Height="74" Margin="264,88,0,0" VerticalAlignment="Top" Width="162" FontSize="36" Click="compressorB_button_Click"/>
+        <Button x:Name="fanA_button" Content="Fan A" Height="74" Margin="0,88,0,0" VerticalAlignment="Top" Width="162" FontSize="36" Click="fanA_button_Click" HorizontalAlignment="Center"/>
+        <Button x:Name="fanB_button" Content="Fan B" Height="74" Margin="598,88,0,0" VerticalAlignment="Top" Width="162" FontSize="36" Click="fanB_button_Click"/>
+        <Button x:Name="compressorA_button" Content="Comp A" Height="74" Margin="97,88,0,0" VerticalAlignment="Top" Width="162" FontSize="36" Click="compressorA_button_Click"/>
+        <Custom1:RadNumericBox x:Name="set_temperature" Style="{StaticResource RadNumericBoxStyle1}" HorizontalAlignment="Left" Height="77" Margin="10,223,0,0" Width="266" ValueChanged="set_temperature_changed" FontSize="36" Minimum="-40"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,167,0,0" Text="Set Temperature" TextWrapping="Wrap" VerticalAlignment="Top" Height="45" Width="266" FontSize="36"/>
-        <Custom1:RadNumericBox x:Name="set_switching_time" HorizontalAlignment="Left" Height="77" Margin="10,383,0,0" Width="266" Style="{StaticResource RadNumericBoxStyle1}" Grid.RowSpan="2" ValueChanged="set_switching_time_value_changed"/>
+        <Custom1:RadNumericBox x:Name="set_switching_time" HorizontalAlignment="Left" Height="77" Margin="10,383,0,0" Width="266" Style="{StaticResource RadNumericBoxStyle1}" Grid.RowSpan="2" ValueChanged="set_switching_time_value_changed" Minimum="10" Maximum="255"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,321,0,0" Text="Switching Time" TextWrapping="Wrap" VerticalAlignment="Top" Height="54" Width="266" FontSize="36"/>
+        <Button x:Name="pump_button" Content="Pump" Height="74" Margin="765,88,0,0" VerticalAlignment="Top" Width="162" FontSize="36" Click="pump_button_Click"/>
+        <Button x:Name="init" Content="Button" Margin="896,155,0,0" Grid.Row="1" VerticalAlignment="Top" Click="init_Click"/>
+        <TextBox x:Name="txtStatus" Text="TextBox" TextWrapping="Wrap" Margin="781,76,21,93" Grid.Row="1"/>
+        <TextBox x:Name="txtStatus2" Text="TextBox" TextWrapping="Wrap" Margin="489,80,313,89" Grid.Row="1"/>
 
 
     </Grid>
