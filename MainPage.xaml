@@ -5,13 +5,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Custom="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:Custom1="using:Telerik.UI.Xaml.Controls.Input"
-    x:Class="hvac_version_2.MainPage"
-    mc:Ignorable="d" Loaded="Page_Loaded" Unloaded="Page_Unloaded"
-    
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" RequestedTheme="Dark"
+    xmlns:media="using:Microsoft.Toolkit.Uwp.UI.Media"
     xmlns:localNumericBox="using:Telerik.UI.Xaml.Controls.Input.NumericBox"
     xmlns:primitives="using:Telerik.UI.Xaml.Controls.Primitives"
-    xmlns:primitivesCommon="using:Telerik.UI.Xaml.Controls.Primitives.Common">
+    xmlns:primitivesCommon="using:Telerik.UI.Xaml.Controls.Primitives.Common" xmlns:Custom2="using:Telerik.UI.Xaml.Controls.DataVisualization"
+    x:Class="hvac_version_2.MainPage"
+    mc:Ignorable="d" Loaded="Page_Loaded" Unloaded="Page_Unloaded" RequestedTheme="Dark"
+    Background="#FF14111D">
+
 
     <Page.Resources>
         <Color x:Key="TelerikWatermarkForegroundColor">#FF666666</Color>
@@ -126,6 +127,223 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Storyboard x:Name="Storyboard_Pump_Led">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="pump_status_light" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.4000000" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="storyboard_fan_2">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="fan2_status_light" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.4000000" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="storyboard_fan1_led">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="fan1_status_light" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.4000000" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="storyboard_compB_led">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="compressorB_status_light" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.4000000" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="storyboard_compA_Led">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="compressorA_status_light" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.4000000" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="start_animation">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="auto_mode" Storyboard.TargetProperty="(FrameworkElement.Width)" EnableDependentAnimation="True">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="162"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="manual_mode" Storyboard.TargetProperty="(FrameworkElement.Width)" EnableDependentAnimation="True">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="162"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="stop_button" Storyboard.TargetProperty="(FrameworkElement.Width)" EnableDependentAnimation="True">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="162"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="compressorB_button" Storyboard.TargetProperty="(FrameworkElement.Width)" EnableDependentAnimation="True">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="162"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="fanA_button" Storyboard.TargetProperty="(FrameworkElement.Width)" EnableDependentAnimation="True">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="162"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="fanB_button" Storyboard.TargetProperty="(FrameworkElement.Width)" EnableDependentAnimation="True">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="162"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="compressorA_button" Storyboard.TargetProperty="(FrameworkElement.Width)" EnableDependentAnimation="True">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="162"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="pump_button" Storyboard.TargetProperty="(FrameworkElement.Width)" EnableDependentAnimation="True">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="162"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="init" Storyboard.TargetProperty="(FrameworkElement.Width)" EnableDependentAnimation="True">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="162"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="init_timing" Storyboard.TargetProperty="(FrameworkElement.Width)" EnableDependentAnimation="True">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="162"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="auto_mode" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="manual_mode" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="stop_button" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="compressorB_button" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="fanA_button" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="fanB_button" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="compressorA_button" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="pump_button" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="init" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="init_timing" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="start_button" Storyboard.TargetProperty="(FrameworkElement.Width)" EnableDependentAnimation="True">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="162"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="start_button" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="stop_animation">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="stop_button" Storyboard.TargetProperty="(FrameworkElement.Width)" EnableDependentAnimation="True">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="162"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="auto_mode" Storyboard.TargetProperty="(FrameworkElement.Width)" EnableDependentAnimation="True">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="162"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="manual_mode" Storyboard.TargetProperty="(FrameworkElement.Width)" EnableDependentAnimation="True">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="162"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="compressorB_button" Storyboard.TargetProperty="(FrameworkElement.Width)" EnableDependentAnimation="True">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="162"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="fanA_button" Storyboard.TargetProperty="(FrameworkElement.Width)" EnableDependentAnimation="True">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="162"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="fanB_button" Storyboard.TargetProperty="(FrameworkElement.Width)" EnableDependentAnimation="True">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="162"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="compressorA_button" Storyboard.TargetProperty="(FrameworkElement.Width)" EnableDependentAnimation="True">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="162"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="pump_button" Storyboard.TargetProperty="(FrameworkElement.Width)" EnableDependentAnimation="True">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="162"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="init" Storyboard.TargetProperty="(FrameworkElement.Width)" EnableDependentAnimation="True">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="162"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="init_timing" Storyboard.TargetProperty="(FrameworkElement.Width)" EnableDependentAnimation="True">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="162"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="start_button" Storyboard.TargetProperty="(FrameworkElement.Width)" EnableDependentAnimation="True">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="162"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="load_animation">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="auto_mode" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1100"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.1000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="manual_mode" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1100"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.1000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="start_button" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1100"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.1000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="stop_button" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1100"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.1000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="compressorB_button" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1100"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.1000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="fanA_button" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1100"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.1000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="fanB_button" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1100"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.1000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="compressorA_button" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1100"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.1000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="pump_button" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1100"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.1000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="init" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1100"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.1000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="init_timing" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1100"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.1000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
     </Page.Resources>
 
     <Grid>
@@ -133,33 +351,86 @@
             <RowDefinition Height="199*"/>
             <RowDefinition Height="101*"/>
         </Grid.RowDefinitions>
-        <Button x:Name="auto_mode" Content="Auto" Height="74" Margin="185,118,0,0" VerticalAlignment="Top" Width="162" FontSize="36" Grid.Row="1" Click="auto_mode_Click"/>
-        <Button x:Name="manual_mode" Content="Manual" Height="74" Margin="352,118,0,0" VerticalAlignment="Top" Width="162" FontSize="36" Grid.Row="1" Click="manual_mode_Click"/>
+        <Button x:Name="auto_mode" Content="Auto" Height="74" Margin="315,118,0,0" VerticalAlignment="Top" Width="0" FontSize="36" Grid.Row="1" Click="auto_mode_Click" FontWeight="Normal" CornerRadius="20,20,20,20" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <CompositeTransform/>
+            </Button.RenderTransform>
+        </Button>
+        <Button x:Name="manual_mode" Content="Manual" Height="74" Margin="503,118,0,0" VerticalAlignment="Top" Width="0" FontSize="36" Grid.Row="1" Click="manual_mode_Click" FontWeight="Normal" CornerRadius="20,20,20,20" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <CompositeTransform/>
+            </Button.RenderTransform>
+        </Button>
 
 
 
-        <Custom:RadialGauge x:Name="tempgauge1" HorizontalAlignment="Left" Height="307" VerticalAlignment="Top" Width="358" Margin="298,167,0,0" RequestedTheme="Default" Maximum="65" Minimum="-40" LargeChange="10" Unit="'C" Grid.RowSpan="2"/>
-        <Custom:RadialGauge x:Name="tempgauge2" HorizontalAlignment="Left" Height="307" VerticalAlignment="Top" Width="358" Margin="656,167,0,0" Maximum="65" Minimum="-40" Unit="'C" ScaleTickWidth="3" Grid.RowSpan="2"/>
-        <Button x:Name="start_button" Content="Start" Height="74" Margin="519,118,0,0" VerticalAlignment="Top" Width="162" FontSize="36" Grid.Row="1" Click="start_button_Click"/>
-        <Button x:Name="stop_button" Content="Stop" Height="74" Margin="686,118,0,0" VerticalAlignment="Top" Width="162" FontSize="36" Click="stop_button_Click" Grid.Row="1"/>
+        <Custom:RadialGauge x:Name="tempgauge1" HorizontalAlignment="Left" Height="307" VerticalAlignment="Top" Width="358" Margin="298,167,0,0" RequestedTheme="Dark" Maximum="65" Minimum="-40" LargeChange="10" Unit="'C" Grid.RowSpan="2" FontSize="48" FontWeight="Normal" FontStyle="Normal"/>
+        <Custom:RadialGauge x:Name="tempgauge2" HorizontalAlignment="Left" Height="307" VerticalAlignment="Top" Width="358" Margin="656,167,0,0" Maximum="65" Minimum="-40" Unit="'C" ScaleTickWidth="3" Grid.RowSpan="2" RequestedTheme="Dark" FontSize="48" FontWeight="Normal"/>
+        <Button x:Name="start_button" Content="Start" Height="74" Margin="685,118,0,0" VerticalAlignment="Top" Width="162" FontSize="36" Grid.Row="1" Click="start_button_Click" FontWeight="Normal" CornerRadius="20,20,20,20" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <CompositeTransform/>
+            </Button.RenderTransform>
+        </Button>
+        <Button x:Name="stop_button" Content="Stop" Height="74" Margin="852,118,0,0" VerticalAlignment="Top" Width="0" FontSize="36" Click="stop_button_Click" Grid.Row="1" FontWeight="Normal" CornerRadius="20,20,20,20" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <CompositeTransform/>
+            </Button.RenderTransform>
+        </Button>
         <Ellipse x:Name="pump_status_light" HorizontalAlignment="Left" Height="75" Margin="809,8,0,0" Stroke="Black" VerticalAlignment="Top" Width="75" Fill="#FFFB0000"/>
-        <Ellipse x:Name="fan1_status_light" HorizontalAlignment="Left" Height="75" Margin="642,8,0,0" Stroke="Black" VerticalAlignment="Top" Width="75" Fill="#FFFB0000"/>
-        <Ellipse x:Name="fan2_status_light" HorizontalAlignment="Center" Height="75" Margin="0,8,0,0" Stroke="Black" VerticalAlignment="Top" Width="75" Fill="#FFFB0000"/>
+        <Ellipse x:Name="fan1_status_light" HorizontalAlignment="Center" Height="75" Margin="0,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="75" Fill="#FFFB0000"/>
+        <Ellipse x:Name="fan2_status_light" HorizontalAlignment="Left" Height="75" Margin="641,8,0,0" Stroke="Black" VerticalAlignment="Top" Width="75" Fill="#FFFB0000"/>
         <Ellipse x:Name="compressorB_status_light" HorizontalAlignment="Left" Height="75" Margin="308,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="75" Fill="#FFFB0000"/>
         <Ellipse x:Name="compressorA_status_light" HorizontalAlignment="Left" Height="75" Margin="141,8,0,0" Stroke="Black" VerticalAlignment="Top" Width="75" Fill="#FFFB0000"/>
-        <Button x:Name="compressorB_button" Content="Comp B" Height="74" Margin="264,88,0,0" VerticalAlignment="Top" Width="162" FontSize="36" Click="compressorB_button_Click"/>
-        <Button x:Name="fanA_button" Content="Fan A" Height="74" Margin="0,88,0,0" VerticalAlignment="Top" Width="162" FontSize="36" Click="fanA_button_Click" HorizontalAlignment="Center"/>
-        <Button x:Name="fanB_button" Content="Fan B" Height="74" Margin="598,88,0,0" VerticalAlignment="Top" Width="162" FontSize="36" Click="fanB_button_Click"/>
-        <Button x:Name="compressorA_button" Content="Comp A" Height="74" Margin="97,88,0,0" VerticalAlignment="Top" Width="162" FontSize="36" Click="compressorA_button_Click"/>
-        <Custom1:RadNumericBox x:Name="set_temperature" Style="{StaticResource RadNumericBoxStyle1}" HorizontalAlignment="Left" Height="77" Margin="10,223,0,0" Width="266" ValueChanged="set_temperature_changed" FontSize="36" Minimum="-40"/>
+        <Button x:Name="compressorB_button" Content="Comp B" Height="74" Margin="264,88,0,0" VerticalAlignment="Top" Width="0" FontSize="36" Click="compressorB_button_Click" FontWeight="Normal" CornerRadius="20,20,20,20" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <CompositeTransform/>
+            </Button.RenderTransform>
+        </Button>
+        <Button x:Name="fanA_button" Content="Fan A" Height="74" Margin="0,88,0,0" VerticalAlignment="Top" Width="0" FontSize="36" Click="fanA_button_Click" HorizontalAlignment="Center" FontWeight="Normal" CornerRadius="20,20,20,20" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <CompositeTransform/>
+            </Button.RenderTransform>
+        </Button>
+        <Button x:Name="fanB_button" Content="Fan B" Height="74" Margin="598,88,0,0" VerticalAlignment="Top" Width="0" FontSize="36" Click="fanB_button_Click" FontWeight="Normal" CornerRadius="20,20,20,20" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <CompositeTransform/>
+            </Button.RenderTransform>
+        </Button>
+        <Button x:Name="compressorA_button" Content="Comp A" Height="74" Margin="97,88,0,0" VerticalAlignment="Top" Width="0" FontSize="36" Click="compressorA_button_Click" FontWeight="Normal" CornerRadius="20,20,20,20" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <CompositeTransform/>
+            </Button.RenderTransform>
+        </Button>
+        <Custom1:RadNumericBox x:Name="set_temperature" Style="{StaticResource RadNumericBoxStyle1}" HorizontalAlignment="Left" Height="77" Margin="10,223,0,0" Width="266" FontSize="36" Minimum="-40" ValueChanged="set_temperature_changed" ValueFormat="{}{0,0:N0}"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,167,0,0" Text="Set Temperature" TextWrapping="Wrap" VerticalAlignment="Top" Height="45" Width="266" FontSize="36"/>
-        <Custom1:RadNumericBox x:Name="set_switching_time" HorizontalAlignment="Left" Height="77" Margin="10,383,0,0" Width="266" Style="{StaticResource RadNumericBoxStyle1}" Grid.RowSpan="2" ValueChanged="set_switching_time_value_changed" Minimum="10" Maximum="255"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,321,0,0" Text="Switching Time" TextWrapping="Wrap" VerticalAlignment="Top" Height="54" Width="266" FontSize="36"/>
-        <Button x:Name="pump_button" Content="Pump" Height="74" Margin="765,88,0,0" VerticalAlignment="Top" Width="162" FontSize="36" Click="pump_button_Click"/>
-        <Button x:Name="init" Content="Button" Margin="896,155,0,0" Grid.Row="1" VerticalAlignment="Top" Click="init_Click"/>
-        <TextBox x:Name="txtStatus" Text="TextBox" TextWrapping="Wrap" Margin="781,76,21,93" Grid.Row="1"/>
-        <TextBox x:Name="txtStatus2" Text="TextBox" TextWrapping="Wrap" Margin="489,80,313,89" Grid.Row="1"/>
-
-
+        <Custom1:RadNumericBox x:Name="set_switching_time" HorizontalAlignment="Left" Height="77" Margin="10,30,0,0" Width="266" Style="{StaticResource RadNumericBoxStyle1}" Minimum="1" Maximum="255" ValueChanged="set_switching_time_value_changed" FontSize="36" Grid.Row="1" ValueFormat="{}{0,0:N0}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,375,0,0" Text="Switching Time" TextWrapping="Wrap" VerticalAlignment="Top" Height="54" Width="266" FontSize="36" Grid.RowSpan="2"/>
+        <Button x:Name="pump_button" Content="Pump" Height="74" Margin="765,88,0,0" VerticalAlignment="Top" Width="0" FontSize="36" Click="pump_button_Click" FontWeight="Normal" CornerRadius="20,20,20,20" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <CompositeTransform/>
+            </Button.RenderTransform>
+        </Button>
+        <Button x:Name="init" Content="Confirm" Margin="10,305,0,0" VerticalAlignment="Top" Click="init_Click" Height="68" Width="0" FontSize="36" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <CompositeTransform/>
+            </Button.RenderTransform>
+        </Button>
+        <TextBox x:Name="txtStatus" Text="TextBox" TextWrapping="Wrap" Margin="781,76,21,93" Grid.Row="1" IsReadOnly="True" IsEnabled="False"/>
+        <TextBox x:Name="txtStatus2" Text="TextBox" TextWrapping="Wrap" Margin="489,80,313,89" Grid.Row="1" Visibility="Visible" IsEnabled="False" IsReadOnly="True"/>
+        <Popup x:Name="FailPopup" RequestedTheme="Dark" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Border 
+                BorderThickness="2" Width="200" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Background="{ThemeResource ComboBoxItemSelectedPointerOverBackgroundThemeBrush}">
+                    <TextBlock Text="Pump Failure" FontSize="24.667" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Border>
+        </Popup>
+        <Button x:Name="init_timing" Content="Confirm" Margin="10,112,0,0" VerticalAlignment="Top" Grid.Row="1" Height="66" Width="0" Click="init_timing_Click" FontSize="36" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <CompositeTransform/>
+            </Button.RenderTransform>
+        </Button>
+        <TextBox x:Name="timer_box" HorizontalAlignment="Left" Height="58" Margin="10,10,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="105" FontSize="24" IsReadOnly="True"/>
+        <TextBox x:Name="free_memory" HorizontalAlignment="Left" Height="58" Margin="919,10,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="105" FontSize="24" IsReadOnly="True"/>
     </Grid>
 </Page>

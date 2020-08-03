@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hvac_version_3", "hvac_version_3.csproj", "{6EF45390-7370-49AC-9EE7-1B1FB0917BAE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hvac_version_4", "hvac_version_4.csproj", "{6EF45390-7370-49AC-9EE7-1B1FB0917BAE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
