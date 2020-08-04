@@ -43,7 +43,7 @@ namespace hvac_version_2
         private int fan1entry = 0;
         private int fan2entry = 0;
         private double Blur_amount = 0;
-
+        /*
         public MainPage()
         {
             this.InitializeComponent();
@@ -61,7 +61,7 @@ namespace hvac_version_2
             pump_button.IsEnabled = false;
             load_animation.Begin();
             
-        }
+        }*/
 
         private async void stop_button_Click(object sender, RoutedEventArgs e)
         {
@@ -236,7 +236,7 @@ namespace hvac_version_2
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            string qFilter = SerialDevice.GetDeviceSelector("UART0");
+            string qFilter = SerialDevice.GetDeviceSelector("COM3");
             DeviceInformationCollection devices = await DeviceInformation.FindAllAsync(qFilter);
 
             if (devices.Any())
